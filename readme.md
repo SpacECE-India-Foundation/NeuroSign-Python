@@ -3,7 +3,11 @@
 1. **Clone the repository:**
    ```sh
 <<<<<<< HEAD
+<<<<<<< HEAD
    git clone https://github.com/DiyaBhujbal/NeuroSignAndSenseIQ.git . (some folder)
+=======
+   git clone https://github.com/gesture_recognition.git . (some folder)
+>>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
 =======
    git clone https://github.com/gesture_recognition.git . (some folder)
 >>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
@@ -13,8 +17,13 @@
    ```sh
    python3 -m venv neurosign
 <<<<<<< HEAD
+<<<<<<< HEAD
    source neurosign/bin/activate  # Linux/Mac
    neurosign\Scripts\activate     # Windows
+=======
+   source venv/bin/activate  # Linux/Mac
+   venv\Scripts\activate     # Windows
+>>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
 =======
    source venv/bin/activate  # Linux/Mac
    venv\Scripts\activate     # Windows

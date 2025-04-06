@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 <<<<<<< HEAD
+<<<<<<< HEAD
 from flask_sqlalchemy import SQLAlchemy
 import google.generativeai as genai
 from flask_cors import CORS
@@ -69,12 +70,17 @@ app.register_blueprint(hobby_prediction_bp)
 app.register_blueprint(story_bp)  # Register the new story blueprint
 
 =======
+=======
+>>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
 from dyslexia_app import dyslexia_bp
 from sign_language_app import sign_language_bp
 
 app = Flask(__name__)
 app.register_blueprint(dyslexia_bp)
 app.register_blueprint(sign_language_bp)
+<<<<<<< HEAD
+>>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
+=======
 >>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
 
 @app.route('/')
@@ -83,7 +89,10 @@ def home():
 
 if __name__ == '__main__':
 <<<<<<< HEAD
+<<<<<<< HEAD
     os.makedirs('uploads', exist_ok=True)
+=======
+>>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
 =======
 >>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
     app.run(debug=True)

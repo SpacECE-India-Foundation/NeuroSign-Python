@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 from flask import render_template, jsonify, request,send_file
+=======
+from flask import render_template, jsonify, request
+>>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
 =======
 from flask import render_template, jsonify, request
 >>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
@@ -8,6 +12,7 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from . import dyslexia_bp
+<<<<<<< HEAD
 <<<<<<< HEAD
 import random
 from fpdf import FPDF
@@ -182,6 +187,8 @@ def generate_report():
     return send_file(pdf_path, as_attachment=True)
 
 =======
+=======
+>>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
 
 load_dotenv()
 client = MongoClient("mongodb://localhost:27017")
@@ -200,12 +207,16 @@ def get_suggestions(score):
     model = genai.GenerativeModel()
     response = model.generate_content(prompt)
     return response.text.strip().split("\n")[:3]
+<<<<<<< HEAD
+>>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
+=======
 >>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
 
 @dyslexia_bp.route('/dyslexia')
 def dyslexia_home():
     return render_template('landing.html')
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 @dyslexia_bp.route('/get_questions')
 def get_questions():
@@ -283,6 +294,8 @@ def fetch_suggestions():
 #         })
 #     return jsonify({"message": "Scores updated successfully"}), 200
 =======
+=======
+>>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
 @dyslexia_bp.route('/get_suggestions', methods=['GET'])
 def fetch_suggestions():
     score = int(request.args.get('score', 0))
@@ -306,6 +319,9 @@ def loginapi():
         return jsonify({"message": "Invalid email or password"}), 401
 
     return jsonify({"message": "Login successful", "username": user["username"]}), 200
+<<<<<<< HEAD
+>>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
+=======
 >>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
 
 
