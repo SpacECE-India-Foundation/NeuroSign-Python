@@ -1,0 +1,241 @@
+/* General styles for the body */
+body {
+  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  text-align: center;
+}
+
+body:after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/static/public/BG3.png");
+  background-size: cover;
+  background-position: center;
+
+  z-index: -1;
+}
+
+/* Container div for the form */
+.container {
+
+  display: flex;
+  justify-content: center;
+  align-items:start;
+  min-height: 82vh;
+  margin-bottom: 0;
+}
+
+#form-div {
+  margin-top:0;
+  width: 70%;
+  max-height: 82vh;
+  /* height: auto; */
+  padding: 20px;
+  padding-bottom: 0px;
+  background-color: #f8f9fa89;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  overflow-y: auto; /* Add scrollbar if content overflows */
+}
+
+/* Scrollbar styling (optional, for better aesthetics) */
+#form-div::-webkit-scrollbar {
+  width: 10px;
+}
+
+#form-div::-webkit-scrollbar-track {
+  background: #ffe4b5;
+  border-radius: 5px;
+}
+
+#form-div::-webkit-scrollbar-thumb {
+  background: #f57c00;
+  border-radius: 5px;
+}
+
+#form-div::-webkit-scrollbar-thumb:hover {
+  background: #e66a00;
+}
+
+/* Form titles and labels */
+h1 {
+  color:#141414 !important;
+  text-align: center;
+  font-weight: bold !important;
+  position: sticky;
+}
+
+h1 {
+  font-size: 20px;
+  text-align: center;
+  color:#000000;
+  padding: 10px;
+  border-radius: 8px;
+  display: inline-block;
+  align-items: center;
+  margin-left: 25%;
+}
+
+h2,h3 {
+  color: #000000 !important;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+#compulsory {
+  color: red;
+}
+
+/* Input fields */
+input[type="number"],
+input[type="text"] {
+  width: 20%;
+  padding: 8px;
+  border: 1px solid #ff8624;
+  border-radius: 5px;
+  background-color: #ffffff;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+/* Radio button styling */
+input[type="radio"] {
+  margin-right: 8px;
+}
+
+label[for^="Olympiad_Participation"],
+label[for^="Scholarship"],
+label[for^="School"],
+label[for^="Career_sprt"],
+label[for^="Act_sprt"],
+label[for^="Fant_arts"],
+label[for^="Won_arts"] {
+  font-weight: normal;
+}
+
+/* Submit button */
+button {
+  background-color: #ff8103;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px !important;
+  font-size: 16px;
+  cursor: pointer;
+  display: block;
+  margin: 40px auto !important;
+}
+
+button:hover {
+  background-color: #ff9225;
+}
+
+/* Predicted outcome */
+#predictedOutcome {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #f57c00;
+}
+
+/* Hidden by default */
+.hidden {
+  display: none;
+}
+
+/* Centered hobby display */
+#hobbyDisplay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 20px 40px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 2000;
+  text-align: center;
+  animation: fadeInScale 0.8s ease-in-out;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff8103;
+}
+
+/* Navbar Styling */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 1000;
+  background-color: #ffd89080;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+
+.navbar-brand {
+  margin-right: auto; /* Ensure logo stays left */
+  display: flex;
+  align-items: center; /* Center the logo vertically */
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Ensure the text color inherits from the parent, so it won't be blue */
+}
+
+.navbar-brand img {
+  height: 60px;
+  width: 62px;
+  padding-left: 10px;
+}
+
+
+.navbar-brand h2 {
+  margin-left: 10px; /* Optional, adjust for spacing between logo and text */
+  user-select: none; /* Prevent text selection/highlight */
+  font-weight: 900;
+  color: #ff8c00;
+}
+
+.navbar-brand h3 {
+  margin-left: 10px; /* Optional, adjust for spacing between logo and text */
+  user-select: none; /* Prevent text selection/highlight */
+  font-weight: 900;
+  color: #ff8c00;
+}
+
+.footer {
+  font-size: 14px;
+  color: #888;
+  text-align: center;
+}
+
+/* Fade-in and scale-up animation */
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<<<<<<< HEAD
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neurosign</title>
+
+    <!-- 
+    - favicon
+  -->
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml" />
+
+    <!-- 
+    - custom css link
+  -->
+    <link rel="stylesheet" href="static/mainpage.css" />
+
+    <!-- 
+    - google font link
+  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Source+Sans+Pro:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body id="top">
+    <!-- 
+    - #HEADER
+  -->
+
+    <header class="header" data-header>
+      <div class="container">
+        <div class="overlay" data-overlay></div>
+
+        <a href="#" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="static/images/logo.png" alt="Neurosign Logo" style="height: 50px; width: auto; margin-right: 10px;">
+          <h1 class="logo">Neurosign</h1>
+        </a>
+
+        <nav class="navbar" data-navbar>
+          <div class="navbar-top">
+            <a href="#" class="logo">Neurosign</a>
+
+            <button
+              class="nav-close-btn"
+              aria-label="Close Menu"
+              data-nav-close-btn
+            >
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+          </div>
+
+          <ul class="navbar-list">
+            <li class="navbar-item">
+              <a href="#home" class="navbar-link" data-navbar-link>Home</a>
+            </li>
+
+            <li class="navbar-item">
+              <a href="#about" class="navbar-link" data-navbar-link>About</a>
+            </li>
+
+            <li class="navbar-item">
+              <a href="#services" class="navbar-link" data-navbar-link
+                >Products</a
+              >
+            </li>
+
+            <li class="navbar-item">
+              <a href="#contactus" class="navbar-link" data-navbar-link>Contact Us</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- <a href="#" class="btn">
+        <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+
+        <span>Get A Quote</span>
+      </a> -->
+
+        <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <article>
+        <!-- 
+        - #HERO
+      -->
+
+        <section class="hero" id="home">
+          <div class="container">
+            <div class="hero-content">
+              <p class="hero-subtitle">
+                An AI-Based Assistant From SpacECE Foundation India
+              </p>
+
+              <h2 class="h2 hero-title">
+                We Help Your Children In Their Early Development Phases
+              </h2>
+
+              <p class="hero-text">
+                Our AI-powered applications help parents support their child's
+                early development with personalized insights and guidance.
+              </p>
+
+            </div>
+
+            <figure class="hero-banner">
+              <img
+                src="static/images/hero-banner.png"
+                width="694"
+                height="529"
+                loading="lazy"
+                alt="hero-banner"
+                class="w-100 banner-animation"
+              />
+            </figure>
+          </div>
+        </section>
+
+        <!-- 
+        - #ABOUT
+      -->
+
+        <section class="section about" id="about">
+          <div class="container">
+            <figure class="about-banner">
+              <img
+                src="static/images/about-banner.png"
+                width="700"
+                height="532"
+                loading="lazy"
+                alt="about banner"
+                class="w-100 banner-animation"
+              />
+            </figure>
+
+            <div class="about-content">
+              <h2 class="h2 section-title underline">About Us</h2>
+
+              <p class="about-text">
+                At Spacece, we are dedicated to creating innovative tech
+                solutions that drive social impact, empower education, and
+                foster community growth.
+              </p>
+
+              <p class="about-text">
+                Our mission is to bridge gaps through technology, ensuring
+                accessible learning and development opportunities for all.
+              </p>
+
+              <ul class="stats-list">
+                <li class="stats-card">
+                  <p class="h3 stats-title">AI-Powered Solutions</p>
+
+                  <p class="stats-text">
+                    Our AI-driven tools offer personalized insights, enabling
+                    better decision-making for children's development.
+                  </p>
+                </li>
+
+                <li class="stats-card">
+                  <p class="h3 stats-title">Trusted by Communities</p>
+
+                  <p class="stats-text">
+                    With a strong network of educators, parents, and
+                    institutions, we are committed to making a difference.
+                  </p>
+                </li>
+
+                <li class="stats-card">
+                  <p class="h3 stats-title">Sustainable Impact</p>
+
+                  <p class="stats-text">
+                    Every solution we create aims to improve lives, ensuring
+                    technology serves a larger social cause.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- 
+        - #SERVICE
+      -->
+
+<section class="section service" id="services">
+  <div class="container">
+    <h2 class="h2 section-title underline">Our Products</h2>
+
+    <!-- Swiper Container -->
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide">
+          <div class="service-card">
+            <div class="card-icon">
+              <ion-icon name="color-palette-outline"></ion-icon>
+            </div>
+            <h3 class="h3 title">Hobby Predictor</h3>
+            <p class="text">
+              <span class="short-text">
+    Hobby Predictor is an ML-based tool designed to predict a child's potential hobbies...
+  </span>
+  <span class="full-text" style="display: none;">
+ Hobby Predictor is an ML-based tool designed to predict a child's potential hobbies based on inputs provided by parents. 
+    By analyzing responses to targeted questions, it helps identify hobbies and recommend learning materials, enabling parents 
+    to nurture their child's talents and interests from an early age.
+  </span>
+            </p>
+            <button class="read-more-btn">Read More</button>
+            <button class="card-btn" aria-label="Show More" onclick="location.href='/hobby_prediction'">
+              <ion-icon name="chevron-forward-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide">
+          <div class="service-card">
+            <div class="card-icon">
+              <ion-icon name="accessibility-outline"></ion-icon>
+            </div>
+            <h3 class="h3 title">Sign-Language Translator</h3>
+            <p class="text">
+             
+              <span class="short-text">
+ Sign-Language Translator is an AI-powered application that translates sign language gestures...
+  </span>
+  <span class="full-text" style="display: none;">
+  Sign-Language Translator is an AI-powered application that translates sign language gestures into text or speech in real-time. 
+                    It helps bridge the communication gap between hearing-impaired individuals and others by recognizing hand gestures and 
+                    converting them into understandable language.
+  </span>
+            </p>
+            <button class="read-more-btn">Read More</button>
+            <button class="card-btn" aria-label="Show More" onclick="location.href='/sign_language'">
+              <ion-icon name="chevron-forward-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide">
+          <div class="service-card">
+            <div class="card-icon">
+              <ion-icon name="bulb-outline"></ion-icon>
+            </div>
+            <h3 class="h3 title">Early Childhood Assessment</h3>
+            <p class="text">
+              <span class="short-text">
+ Early Learning Assessment Tool is an intelligent solution designed...
+  </span>
+  <span class="full-text" style="display: none;">
+  Early Learning Assessment Tool is an intelligent solution designed to evaluate foundational reading, writing, 
+                    and language skills in children through interactive assessments and pattern recognition. By analyzing learning 
+                    behaviors and cognitive patterns, it provides valuable insights that help parents and educators support children's
+                     educational development, ensuring a strong foundation for future learning.
+  </span>
+            </p>
+     <button class="read-more-btn">Read More</button>
+            <button class="card-btn" aria-label="Show More" onclick="location.href='/dyslexia'">
+              <ion-icon name="chevron-forward-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="swiper-slide">
+          <div class="service-card">
+            <div class="card-icon">
+              <ion-icon name="film-outline"></ion-icon>
+            </div>
+            <h3 class="h3 title">AI Story Generator</h3>
+            <p class="text">
+              
+<span class="short-text">
+ AI Story Generator is a magical tool that creates fun and exciting stories just for you...
+  </span>
+  <span class="full-text" style="display: none;">
+ AI Story Generator is a magical tool that creates fun and exciting stories just for you!
+                     Tell it a few words, and it will make up a wonderful adventure with princesses, pirates, 
+                     animals, or anything you like. It's like having a storytelling friend who never runs out of 
+                     ideas!
+  </span>
+            </p>
+            <button class="read-more-btn">Read More</button>
+            <button class="card-btn" aria-label="Show More" onclick="location.href='/story'">
+              <ion-icon name="chevron-forward-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Navigation -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+
+      <!-- Pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+ <section class="section service"id="contactus" >
+  <h2 class="h2 section-title underline">Contact Us</h2>
+
+        <div style="background: white; padding: 15px; margin: 15px 0; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); display:block; align-items: center; text-align: center; max-width:500px;margin-left: 33%;">
+           <div style="display: flex; justify-content: center; align-items: center; font-size: 40px; margin-bottom: 10px;">
+    <ion-icon name="call-outline" style="font-size: 50px ;color:#ffa500"></ion-icon>
+</div>
+            <div>
+                <!-- <h3 style="margin: 0; font-size: 18px;">Phone</h3> -->
+                <p style="margin: 5px 0 0; color: #555;">Mobile: +91 9096305648</p>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 15px; margin: 15px 0; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); display:block; align-items: center; text-align: center ;max-width:500px;margin-left: 33%">
+            <div style="display: flex; justify-content: center; align-items: center; font-size: 40px; margin-bottom: 10px;">
+    <ion-icon name="mail-outline" style="font-size: 50px;color:#ffa500"></ion-icon>
+</div>
+            <div>
+                <!-- <h3 style="margin: 0; font-size: 18px;">Email</h3> -->
+                <a href="mailto:technology.spacece@gmail.com" style="margin: 5px 0 0; color: #555;"
+                  >technology.spacece@gmail.com</a>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 15px; margin: 15px 0; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); display:block; align-items: center; text-align: center;max-width:500px;margin-left: 33%">
+            <div style="display: flex; justify-content: center; align-items: center; font-size: 40px; margin-bottom: 10px;">
+    <ion-icon name="location" style="font-size: 50px;color:#ffa500"></ion-icon>
+</div>
+                <!-- <h3 style="margin: 0; font-size: 18px;">Location</h3> -->
+                <p style="margin: 5px 0 0; color: #555;">SpacECE, Bhagwat Bungalow, Raikar Nagar, Dhayari Pune 411041</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+    - #FOOTER
+  -->
+
+    <footer class="footer">
+      <div class="footer-top section">
+        <div class="container">
+          <div class="footer-brand">
+            <a href="#" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="static/images/logo.png" alt="Neurosign Logo" style="height: 50px; width: auto; margin-right: 10px;">  <h1 class="logo">Neurosign</h1></a>
+
+            <p class="text">
+              Our AI-powered applications help parents support their child's early development with personalized insights and guidance.
+            </p>
+
+            <ul class="social-list">
+              <li>
+                <a href="https://www.facebook.com/SpacECE/" class="social-link">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://www.instagram.com/spac.ece/" class="social-link">
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://x.com/ece_spac" class="social-link">
+                  <ion-icon name="logo-twitter"></ion-icon>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <ul class="footer-list">
+            <li>
+              <p class="footer-list-title">Our links</p>
+            </li>
+
+            <li>
+              <a href="#" class="footer-link">Home</a>
+            </li>
+
+            <li>
+              <a href="#" class="footer-link">About Us</a>
+            </li>
+
+            <li>
+              <a href="#" class="footer-link">Products</a>
+            </li>
+          </ul>
+
+          <!--  -->
+
+          <ul class="footer-list">
+            <li>
+              <p class="footer-list-title">Contact Us</p>
+            </li>
+
+            <li class="footer-item">
+              <div class="footer-item-icon">
+                <ion-icon name="mail"></ion-icon>
+              </div>
+
+              <div>
+                <a href="mailto:technology.spacece@gmail.com" class="footer-item-link"
+                  >technology.spacece@gmail.com</a
+                >
+              </div>
+            </li>
+
+            <li class="footer-item">
+              <div class="footer-item-icon">
+                <ion-icon name="location"></ion-icon>
+              </div>
+
+              <address class="footer-item-link">
+                SpacECE, Bhagwat Bungalow, Raikar Nagar, Dhayari Pune 411041.
+              </address>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; 2021
+events@spacece.co | Contact US
+Terms and Conditions | Disclaimer | Cookie Policy
+Privacy Policy | Refund Policy | Shipping Policy
+        </p>
+      </div>
+    </footer>
+
+    <!-- 
+    - #GO TO TOP
+  -->
+
+    <a href="#top" class="go-top active" aria-label="Go To Top" data-go-top>
+      <ion-icon name="arrow-up-outline"></ion-icon>
+    </a>
+
+    <!-- 
+    - custom js link
+  -->
+    <script src="./assets/js/script.js"></script>
+
+    <!-- 
+    - ionicon link
+  -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+<script>
+  var swiper = new Swiper(".swiper-container", {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    loop: true,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    breakpoints: {
+      768: { slidesPerView: 2 }, 
+      1024: { slidesPerView: 2 }
+    }
+  });
+</script>
+<script>
+  document.querySelectorAll('.read-more-btn').forEach(button => {
+  button.addEventListener('click', function () {
+    const card = this.closest('.service-card'); // Get the parent card (if inside a container)
+    const shortText = card.querySelector('.short-text');
+    const fullText = card.querySelector('.full-text');
+
+    if (fullText.style.display === 'none') {
+      fullText.style.display = 'inline';
+      shortText.style.display = 'none';
+      this.textContent = 'Read Less';
+    } else {
+      fullText.style.display = 'none';
+      shortText.style.display = 'inline';
+      this.textContent = 'Read More';
+    }
+  });
+});
+
+</script>
+=======
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NeuroSign</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+      }
+      .content {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .btn-container {
+        display: flex;
+        gap: 15px;
+      }
+      .btn {
+        background-color: orange;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: 0.3s;
+      }
+      .btn:hover {
+        background-color: darkorange;
+      }
+      footer {
+        position: relative;
+        bottom: 0;
+        width: 100%;
+      }
+      .navbar {
+        background-color: white !important;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .navbar-brand img {
+        height: 80px;
+        margin-right: 10px;
+      }
+      .navbar-brand {
+        color: black !important;
+        font-weight: bold;
+      }
+      .navbar-title {
+        flex-grow: 1;
+        text-align: center;
+        font-weight: bold;
+        font-size: 32px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="Logo" />
+        </a>
+        <div class="navbar-title">NeuroSign</div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content">
+      <div class="btn-container">
+        <button class="btn" onclick="location.href='/dyslexia'">Dyslexia App</button>
+        <button class="btn" onclick="location.href='/sign_language'">Sign Language App</button>
+        <!-- <button class="btn">Button 3</button>
+        <button class="btn">Button 4</button> -->
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white text-dark text-center py-3">
+      &copy; 2025 SpacEce Foundation India. All Rights Reserved.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+>>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
+  </body>
+</html>

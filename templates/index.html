@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<<<<<<< HEAD
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='home.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <title>Gesture Recognition</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f3f4f6; /* bg-gray-100 */
+        display: block;
+        align-items: center;
+        justify-content: center;
+        min-height: 87vh;
+        background-image: url("static/public/BG3.png");
+        background-size: cover;
+        background-position: center;
+        margin-top: 30px;
+      }
+
+      .container {
+        max-width: 800px;
+        margin-top: 20px;
+        margin: auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.655);
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .logo {
+        margin-left: 20px;
+        height: 50px;
+      }
+      h1 {
+        color: #ffa500;
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+
+      .content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .video-section {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .controls-section {
+        flex: 1;
+        min-width: 300px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      h2 {
+        color: #555;
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+      }
+
+      h3 {
+        color: #555;
+        margin-top: 15px;
+        margin-bottom: 5px;
+        font-size: 1.2rem;
+      }
+
+      #output {
+        width: 100%;
+        max-width: 640px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      button {
+        background-color: #ffa500;
+        color: #ffffff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      button:hover {
+        background-color: #ffa500;
+      }
+
+      button:disabled {
+        background-color: #95a5a6;
+        cursor: not-allowed;
+      }
+
+      .icon-button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .button-group {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+
+      #prediction-box {
+        /* height: auto;
+    width: auto; */
+        background-color: white;
+        padding: 15px;
+        border-radius: 8px;
+        border: 2px solid #ffa500;
+        min-height: 60px;
+        max-height: 150px; /* Set a max height to enable scrolling */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.398);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        overflow-y: auto; /* Enables vertical scrolling */
+        overflow-x: hidden; /* Prevents horizontal scrolling */
+        scrollbar-width: thin; /* Makes the scrollbar thinner */
+        scrollbar-color: #ffa500 transparent; /* Scrollbar styling */
+      }
+
+      /* Customize scrollbar for WebKit browsers (Chrome, Safari) */
+      #prediction-box::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      #prediction-box::-webkit-scrollbar-thumb {
+        background-color: #ffa500;
+        border-radius: 4px;
+      }
+
+      #prediction-box::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .prediction-btn {
+        background-color: #ffa500;
+        color: #ffffff;
+        padding: 5px 10px;
+        margin: 3px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .prediction-btn:hover {
+        background-color: #ffa500;
+      }
+
+      #sentence {
+        background-color: white;
+        padding: 15px;
+        border-radius: 8px;
+        min-height: 100px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.398);
+        margin-bottom: 15px;
+        line-height: 1.5;
+      }
+
+      select {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        margin-bottom: 15px;
+        background-color: white;
+      }
+
+      .info {
+        background-color: #fceccd;
+        padding: 10px 15px;
+        border-radius: 5px;
+        margin: 10px 0;
+        font-style: italic;
+        color: #ffa500;
+      }
+
+      .bottom-controls {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .footer {
+        margin-top: 0;
+        font-size: 14px;
+        color: #888;
+        text-align: center;
+        margin-bottom: 0;
+      }
+
+      .back-btn button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: white;
+        color: #ffa500;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background 0.3s;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.511);
+      }
+      .back-btn button:hover {
+        background: #ffa500;
+        color: white;
+      }
+      @media (max-width: 768px) {
+        .content {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="back-btn">
+      <button onclick="window.history.back()">← Back</button>
+    </div>
+    <div class="container">
+      <h1>Sign To Language Translator</h1>
+
+      <main class="content">
+        <!-- Left side: Video section -->
+        <div class="video-section">
+          <h2>Gesture Recognition Stream</h2>
+          <video id="video" autoplay playsinline style="display: none"></video>
+          <canvas
+            id="canvas"
+            width="640"
+            height="480"
+            style="display: none"
+          ></canvas>
+          <img
+            src="static/images/logo.jpeg"
+            id="output"
+            alt="Gesture Recognition Output"
+          />
+
+          <div class="button-group">
+            <button id="start-btn" onclick="startCapture()">
+              <i class="fas fa-play"></i> Start
+            </button>
+            <button id="stop-btn" onclick="stopCapture()">
+              <i class="fas fa-stop"></i> Stop
+            </button>
+            <button class="icon-button" onclick="reset()" title="Reset Word">
+              <i class="fas fa-undo"></i>
+            </button>
+          </div>
+
+          <!-- <div class="info">
+            <p>
+              <i class="fas fa-info-circle"></i> AI Based Gesture Recognition
+              Tool
+            </p>
+          </div> -->
+        </div>
+
+        <!-- Right side: Controls section -->
+        <div class="controls-section">
+          <h3><i class="fas fa-hand-point-up"></i> Predicted Words</h3>
+          <div id="prediction-box"></div>
+
+          <h3><i class="fas fa-comment"></i> Generated Sentence</h3>
+          <div id="sentence"></div>
+
+          <div class="bottom-controls">
+            <button id="predict-btn" onclick="generateSentence()">
+              <i class="fas fa-magic"></i> Generate Sentence
+            </button>
+
+            <select id="languageSelect">
+              <option value="en">English</option>
+              <option value="hi">Hindi</option>
+              <option value="mr">Marathi</option>
+              <option value="pa">Punjabi</option>
+              <option value="te">Telugu</option>
+              <option value="ta">Tamil</option>
+              <option value="kn">Kannada</option>
+              <option value="ml">Malayalam</option>
+              <option value="gu">Gujarati</option>
+              <option value="bn">Bengali</option>
+            </select>
+            <button
+              class="icon-button"
+              onclick="resetsentence()"
+              style="margin-left: auto; margin-right: auto"
+              title="Reset Sentence"
+            >
+              <i class="fas fa-undo"></i>
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const langSelect = document.getElementById("languageSelect");
+        const cookieLang = getCookie("selectedLang");
+        if (cookieLang) {
+          langSelect.value = cookieLang;
+        }
+      });
+      let intervalId = null;
+      let videoStream = null;
+
+      async function startCapture() {
+        const video = document.getElementById("video");
+        const canvas = document.getElementById("canvas");
+        const context = canvas.getContext("2d");
+        const output = document.getElementById("output");
+        const predictButton = document.getElementById("predict-btn");
+        videoStream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+        });
+        video.srcObject = videoStream;
+
+        // Disable predict button while capturing
+        predictButton.disabled = true;
+
+        intervalId = setInterval(async () => {
+          if (!intervalId) return;
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+          const frame = canvas.toDataURL("image/jpeg");
+
+          try {
+            const response = await fetch("/process_frame", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ image: frame }),
+            });
+            const data = await response.json();
+            output.src = data.image;
+            completeText();
+          } catch (error) {
+            console.error("Error sending frame:", error);
+          }
+        }, 100);
+      }
+
+      function stopCapture() {
+        if (intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
+        if (videoStream) {
+          videoStream.getTracks().forEach((track) => track.stop());
+          videoStream = null;
+        }
+        document.getElementById("video").srcObject = null;
+
+        // Clear output image and prediction text when stopping
+        document.getElementById("output").src = "";
+        //document.getElementById('prediction-box').innerText = "Predicted Text Will Appear Here";
+
+        // Enable predict button when capturing stops
+        document.getElementById("predict-btn").disabled = false;
+      }
+
+      async function completeText() {
+        try {
+          const response = await fetch("/autocomplete", { method: "POST" });
+          const data = await response.json();
+
+          const predictionBox = document.getElementById("prediction-box");
+          predictionBox.innerHTML = ""; // Clear old predictions
+
+          if (Array.isArray(data.prediction) && data.prediction.length > 0) {
+            data.prediction.forEach((word) => {
+              const button = document.createElement("button");
+              button.innerText = word;
+              button.className = "prediction-btn";
+              button.addEventListener("click", () => addToSentence(word)); // Ensure button works
+              predictionBox.appendChild(button);
+            });
+          } else {
+            predictionBox.innerText = "No predictions available";
+          }
+        } catch (error) {
+          console.error("Error predicting text:", error);
+        }
+      }
+
+      function addToSentence(word) {
+        const sentenceDiv = document.getElementById("sentence");
+        async function completeText() {
+          try {
+            const response = await fetch("/autocomplete", { method: "POST" });
+            const data = await response.json();
+
+            const predictionBox = document.getElementById("prediction-box");
+            predictionBox.innerHTML = ""; // Clear old predictions
+
+            if (Array.isArray(data.prediction) && data.prediction.length > 0) {
+              data.prediction.forEach((word) => {
+                const button = document.createElement("button");
+                button.innerText = word;
+                button.className = "prediction-btn";
+                button.addEventListener("click", () => addToSentence(word)); // Ensure button works
+                predictionBox.appendChild(button);
+              });
+            } else {
+              predictionBox.innerText = "No predictions available";
+            }
+          } catch (error) {
+            console.error("Error predicting text:", error);
+          }
+        } // Append word with space handling
+        sentenceDiv.innerText = sentenceDiv.innerText.trim()
+          ? sentenceDiv.innerText + " " + word
+          : word;
+
+        const pbox = document.getElementById("prediction-box");
+        const buttons = Array.from(pbox.getElementsByTagName("button"));
+
+        // Properly remove the clicked button
+        buttons.forEach((button) => {
+          if (button.innerText.trim() === word.trim()) {
+            button.remove(); // This ensures the button is removed
+          }
+        });
+      }
+      function removeButtonByText(word) {
+        let pbox = document.getElementById("prediction-box");
+        let buttons = pbox.getElementsByTagName("button");
+
+        Array.from(buttons).forEach((button) => {
+          if (button.innerText.trim() === word) {
+            pbox.removeChild(button);
+          }
+        });
+      }
+
+      async function reset() {
+        try {
+          await fetch("/reset", { method: "POST" });
+          document.getElementById("prediction-box").innerText =
+            "Predicted Text Will Appear Here"; // Reset prediction box
+        } catch (error) {
+          console.error("Error resetting:", error);
+        }
+      }
+      async function generateSentence() {
+        const sentenceDiv = document.getElementById("sentence");
+        const words = sentenceDiv.innerText.trim().split(" ");
+        const langSelect = document.getElementById("languageSelect");
+
+        // Fetch the language from the cookie or dropdown
+        let lang = getCookie("selectedLang") || langSelect.value;
+
+        // Update cookie if needed
+        if (lang !== langSelect.value) {
+          lang = langSelect.value;
+          setCookie("selectedLang", lang, 365);
+        }
+
+        console.log("Selected Language:", lang);
+
+        if (words.length === 0 || words[0] === "") {
+          alert("No words to form a sentence!");
+          return;
+        }
+
+        try {
+          const response = await fetch("/predict", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ words: words, lang: lang }), // Corrected syntax
+          });
+
+          const data = await response.json();
+          if (data.sentence) {
+            sentenceDiv.innerText = data.sentence;
+          } else {
+            alert("Failed to generate sentence.");
+          }
+
+          // Fetch and play audio
+          const audioResponse = await fetch(`/audio/${data.audio}`);
+          if (!audioResponse.ok) throw new Error("Failed to fetch audio");
+
+          const audioBlob = await audioResponse.blob();
+          const audioURL = URL.createObjectURL(audioBlob);
+
+          // Create play button
+          const audioButton = document.createElement("button");
+          audioButton.innerText = "🔊 Play Audio";
+          audioButton.onclick = function () {
+            const audio = new Audio(audioURL);
+            audio.play();
+          };
+
+          sentenceDiv.appendChild(audioButton);
+        } catch (error) {
+          console.error("Error generating sentence:", error);
+        }
+      }
+
+      // Function to get a cookie
+      function getCookie(name) {
+        const cookies = document.cookie.split("; ");
+        for (let cookie of cookies) {
+          let [key, value] = cookie.split("=");
+          if (key === name) {
+            return value;
+          }
+        }
+        return null;
+      }
+      function setCookie(name, value, days) {
+        const d = new Date();
+        d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000); // Expiry in days
+        document.cookie = `${name}=${value}; expires=${d.toUTCString()}; path=/`;
+      }
+      async function resetsentence() {
+        document.getElementById("sentence").textContent = "";
+      }
+    </script>
+  </body>
+=======
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static\images\home.css">
+    <title>Gesture Recognition</title>
+    <script>
+        let intervalId = null;
+        let videoStream = null;
+
+        async function startCapture() {
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+            const context = canvas.getContext('2d');
+            const output = document.getElementById('output');
+            const predictButton = document.getElementById('predict-btn');
+
+            try {
+                videoStream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = videoStream;
+
+                // Disable predict button while capturing
+                predictButton.disabled = true;
+
+                intervalId = setInterval(() => {
+                    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                    const frame = canvas.toDataURL('image/jpeg');
+
+                    fetch('/process_frame', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ image: frame })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        output.src = data.image;
+                        console.log('Gesture Recognition Result:', data.result);
+                    })
+                    .catch(error => {
+                        console.error('Error sending frame:', error);
+                    });
+                }, 100);
+            } catch (error) {
+                console.error('Error accessing webcam:', error);
+            }
+        }
+
+        function stopCapture() {
+            if (intervalId) {
+                clearInterval(intervalId);
+                intervalId = null;
+            }
+            if (videoStream) {
+                videoStream.getTracks().forEach(track => track.stop());
+                videoStream = null;
+            }
+            document.getElementById('video').srcObject = null;
+
+            // Clear output image and prediction text when stopping
+            document.getElementById('output').src = "";
+            document.getElementById('prediction-box').innerText = "Predicted Text Will Appear Here";
+
+            // Enable predict button when capturing stops
+            document.getElementById('predict-btn').disabled = false;
+        }
+
+        async function predictText() {
+            fetch('/predict', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('prediction-box').innerText = data.prediction;
+            })
+            .catch(error => {
+                console.error('Error predicting text:', error);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header class="navbar">
+            <img src="static\images\logo.jpeg" alt="SpaceECE" class="logo">
+            <h1 class="main-heading">Sign To Language Translator</h1>
+        </header>
+
+        <main class="content">
+            <h2>Gesture Recognition Stream</h2>
+            <video id="video" autoplay playsinline style="display:none;"></video>
+            <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
+            <img id="output" style="width:640px;height:480px;" />
+
+            <div class="info">
+                <p>AI Based Gesture Recognition Tool</p>
+            </div>
+
+            <!-- Start & Stop Buttons -->
+            <button onclick="startCapture()" style="margin-left: auto; margin-right: auto;">Start Gesture Recognition</button>
+            <button onclick="stopCapture()" style="margin-left: auto; margin-right: auto;">Stop Gesture Recognition</button>
+
+            <!-- Predict Button (Initially enabled) -->
+            <button id="predict-btn" onclick="predictText()" style="margin-left: auto; margin-right: auto;">Predict</button>
+
+            <!-- Display Prediction -->
+            <div id="prediction-box" style="margin-top: 20px; padding: 10px; border: 1px solid black; width: 300px; min-height: 50px; margin-left: auto; margin-right: auto;">
+                Predicted Text Will Appear Here
+            </div>
+        </main>
+    </div>
+</body>
+>>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
+</html>

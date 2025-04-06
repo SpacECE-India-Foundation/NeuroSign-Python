@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Story Generator</title>
+    <style>
+      body {
+        background-color: #f3f4f6; /* bg-gray-100 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-image: url("static/public/BG3.png");
+        background-size: cover;
+        background-position: center;
+      }
+
+      /* Navbar Styling */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        z-index: 1000;
+        background-color: #ffd89080;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar-brand {
+        margin-right: auto; /* Ensure logo stays left */
+        display: flex;
+        align-items: center; /* Center the logo vertically */
+        text-decoration: none; /* Remove underline */
+        color: inherit; /* Ensure the text color inherits from the parent, so it won't be blue */
+      }
+
+      .navbar-brand img {
+        height: 60px;
+        width: 62px;
+        padding-left: 10px;
+      }
+
+      .navbar-brand h2 {
+        margin-left: 10px; /* Optional, adjust for spacing between logo and text */
+        user-select: none; /* Prevent text selection/highlight */
+        font-weight: 900;
+        color: #ff8c00;
+      }
+
+      .navbar-brand h3 {
+        margin-left: 10px; /* Optional, adjust for spacing between logo and text */
+        user-select: none; /* Prevent text selection/highlight */
+        font-weight: 900;
+        color: #ff8c00;
+      }
+
+      .container {
+        margin-top: 115px;
+        margin-bottom: 15px;
+        max-width: 800px;
+        max-height: 500px;
+        overflow-y: auto;
+        background-color: rgba(255, 255, 255, 0.549);
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.511);
+        border-radius: 0.5rem;
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+      }
+
+      /* Custom scrollbar styling */
+      .container::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .container::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+
+      .container::-webkit-scrollbar-thumb {
+        background: #ffa500;
+        border-radius: 10px;
+      }
+
+      .container::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      .form input {
+        border: 2px solid #ffa500;
+      }
+
+      h2 {
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #ffa500;
+      }
+
+      label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      input,
+      select,
+      textarea,
+      button {
+        width: 500px;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: none;
+        font-size: 14px;
+        border: 2px solid #ffa500;
+      }
+
+      input,
+      select,
+      textarea {
+        background: rgba(255, 255, 255, 0.9);
+        color: #333;
+      }
+
+      textarea {
+        resize: none;
+        height: 150px;
+      }
+
+      button {
+        background: #ffa500;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 15px;
+        transition: background 0.3s;
+      }
+
+      button:hover {
+        background: #ff8c00;
+      }
+
+      h3 {
+        margin-top: 10px;
+      }
+
+      .story-container {
+        position: relative;
+        width: 700px; /* Adjust width as needed */
+        padding: 20px;
+        text-align: center;
+        margin: auto; /* Centers it horizontally */
+      }
+
+      .story-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("/static/public/image.png") center/cover no-repeat;
+        opacity: 1; /* Low opacity */
+        z-index: 0;
+        border-radius: 10px; /* Optional for rounded corners */
+      }
+
+      #story {
+        position: relative;
+        color: black; /* Adjust text color for readability */
+        font-size: 18px;
+        font-weight: bold;
+        z-index: 1;
+        padding: 20px;
+        background: rgba(
+          255,
+          255,
+          255,
+          0.7
+        ); /* Optional semi-transparent background */
+        border-radius: 10px; /* Optional for styling */
+      }
+
+      .audio-buttons {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      #audioPlayer {
+        display: none;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid d-flex align-items-center">
+        <!-- Logo and "Hobby Prediction" on the left -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="static/public/logo.png" alt="Logo" width="80" height="80" />
+          <h2>Personalized AI Story Generator</h2>
+        </a>
+
+        <!-- "About" link on the right -->
+        <!-- <a class="navbar-brand ms-auto" href="#">
+      <h3>About</h3>
+    </a> -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <h2>Please Fill Your Prefrences</h2>
+      <form id="storyForm">
+        <label>Age:</label>
+        <input type="number" id="age" min="1" max="8" />
+
+        <label>Gender:</label>
+        <select id="gender">
+          <option value="boy">Boy</option>
+          <option value="girl">Girl</option>
+        </select>
+
+        <label>Mood:</label>
+        <select id="mood">
+          <optgroup label="Positive Moods">
+            <option value="happy">Happy</option>
+            <option value="excited">Excited</option>
+            <option value="joyful">Joyful</option>
+            <option value="loved">Loved</option>
+            <option value="grateful">Grateful</option>
+            <option value="proud">Proud</option>
+            <option value="kind">Kind</option>
+          </optgroup>
+
+          <optgroup label="Energetic & Adventurous Moods">
+            <option value="adventurous">Adventurous</option>
+            <option value="curious">Curious</option>
+            <option value="brave">Brave</option>
+            <option value="hyper">Hyper</option>
+            <option value="excitable">Excitable</option>
+            <option value="competitive">Competitive</option>
+            <option value="determined">Determined</option>
+          </optgroup>
+
+          <optgroup label="Calm & Relaxed Moods">
+            <option value="sleepy">Sleepy</option>
+            <option value="relaxed">Relaxed</option>
+            <option value="peaceful">Peaceful</option>
+            <option value="content">Content</option>
+            <option value="thoughtful">Thoughtful</option>
+            <option value="daydreaming">Daydreaming</option>
+            <option value="hopeful">Hopeful</option>
+          </optgroup>
+
+          <optgroup label="Challenging Moods">
+            <option value="grumpy">Grumpy</option>
+            <option value="scared">Scared</option>
+            <option value="lonely">Lonely</option>
+            <option value="shy">Shy</option>
+            <option value="frustrated">Frustrated</option>
+            <option value="stubborn">Stubborn</option>
+            <option value="overwhelmed">Overwhelmed</option>
+            <option value="bored">Bored</option>
+            <option value="confused">Confused</option>
+          </optgroup>
+
+          <optgroup label="Silly & Fun Moods">
+            <option value="silly">Silly</option>
+            <option value="giggly">Giggly</option>
+            <option value="goofy">Goofy</option>
+            <option value="mischievous">Mischievous</option>
+            <option value="creative">Creative</option>
+            <option value="imaginative">Imaginative</option>
+          </optgroup>
+
+          <optgroup label="Other Moods">
+            <option value="nervous">Nervous</option>
+            <option value="worried">Worried</option>
+            <option value="thoughtful">Thoughtful</option>
+            <option value="grateful">Grateful</option>
+            <option value="hopeful">Hopeful</option>
+            <option value="other">Other</option>
+            <!-- Added "Other" option -->
+          </optgroup>
+        </select>
+        <input
+          type="text"
+          id="customMood"
+          class="hidden"
+          placeholder="Please specify your mood"
+        />
+
+        <label>Interests:</label>
+        <select id="interests">
+          <optgroup label="Animals">
+            <option value="dinosaurs">Dinosaurs</option>
+            <option value="pets">Pets (Dogs, Cats, Rabbits)</option>
+            <option value="wild_animals">
+              Wild Animals (Lions, Elephants)
+            </option>
+            <option value="ocean_animals">
+              Ocean Animals (Whales, Sharks, Dolphins)
+            </option>
+          </optgroup>
+          <optgroup label="Fantasy & Magic">
+            <option value="dragons">Dragons</option>
+            <option value="fairies">Fairies & Magical Creatures</option>
+            <option value="superheroes">Superheroes</option>
+            <option value="wizards">Wizards & Witches</option>
+          </optgroup>
+          <optgroup label="Vehicles & Travel">
+            <option value="cars">Cars & Trucks</option>
+            <option value="trains">Trains</option>
+            <option value="planes">Planes & Helicopters</option>
+            <option value="space">Space (Rockets, Planets, Astronauts)</option>
+          </optgroup>
+          <optgroup label="Adventure & Exploration">
+            <option value="pirates">Pirates & Treasure Hunts</option>
+            <option value="jungle">Jungle Exploration</option>
+            <option value="underwater">Underwater Adventures</option>
+            <option value="mystery">Mystery & Detective Stories</option>
+          </optgroup>
+          <optgroup label="Nature & Science">
+            <option value="weather">Weather (Rainbows, Storms, Snow)</option>
+            <option value="plants">Plants & Gardening</option>
+            <option value="bugs">Bugs & Insects</option>
+            <option value="science_experiments">Fun Science Experiments</option>
+          </optgroup>
+          <optgroup label="Sports & Action">
+            <option value="soccer">Soccer</option>
+            <option value="swimming">Swimming</option>
+            <option value="climbing">Climbing & Hiking</option>
+            <option value="running">Running & Racing</option>
+          </optgroup>
+          <optgroup label="Music & Creativity">
+            <option value="singing">Singing</option>
+            <option value="dancing">Dancing</option>
+            <option value="painting">Painting & Drawing</option>
+            <option value="building">Building with Blocks & LEGO</option>
+          </optgroup>
+          <optgroup label="Food & Cooking">
+            <option value="baking">Baking (Cookies, Cakes)</option>
+            <option value="fruits">Fruits & Healthy Snacks</option>
+            <option value="candy">Candy & Treats</option>
+            <option value="ice_cream">Ice Cream</option>
+          </optgroup>
+          <optgroup label="Fairy Tales & Classic Stories">
+            <option value="princesses">Princesses & Castles</option>
+            <option value="knights">Knights & Battles</option>
+            <option value="talking_animals">Talking Animals</option>
+            <option value="friendship_stories">Friendship Stories</option>
+          </optgroup>
+          <optgroup label="Other Interests">
+            <option value="other">Other</option>
+            <!-- Added "Other" option -->
+          </optgroup>
+        </select>
+        <input
+          type="text"
+          id="customInterest"
+          class="hidden"
+          placeholder="Please specify your interest"
+        />
+
+        <label>Story Length:</label>
+        <select id="story_length">
+          <option value="short">Short (2 min)</option>
+          <option value="medium">Medium (5 min)</option>
+          <option value="long">Long (10 min)</option>
+        </select>
+
+        <label>Time of Day:</label>
+        <select id="time_of_day">
+          <option value="daytime">Daytime</option>
+          <option value="bedtime">Bedtime</option>
+        </select>
+
+        <label>Additional Requests:</label>
+        <textarea id="additional" placeholder="Optional"></textarea>
+
+        <button type="submit">Generate Story</button>
+      </form>
+
+      <h3>Generated Story:</h3>
+      <div class="story-container">
+        <div class="story-background"></div>
+        <p id="story"></p>
+      </div>
+
+<div class="audio-buttons">
+  <button id="readEnglish" data-language="English" style="display: none">
+    🔊 Listen in English
+  </button>
+  <button id="readHindi" data-language="Hindi" style="display: none">
+    🔊 Listen in Hindi
+  </button>
+  <button id="readMarathi" data-language="Marathi" style="display: none">
+    🔊 Listen in Marathi
+  </button>
+</div>
+      <audio id="audioPlayer" controls></audio>
+    </div>
+
+    <script>
+      // Show/hide custom input fields for Mood and Interests
+      document.getElementById("mood").addEventListener("change", function () {
+        if (this.value === "other") {
+          document.getElementById("customMood").classList.remove("hidden");
+        } else {
+          document.getElementById("customMood").classList.add("hidden");
+        }
+      });
+
+      document
+        .getElementById("interests")
+        .addEventListener("change", function () {
+          if (this.value === "other") {
+            document
+              .getElementById("customInterest")
+              .classList.remove("hidden");
+          } else {
+            document.getElementById("customInterest").classList.add("hidden");
+          }
+        });
+
+      // Form submission logic
+      document
+        .getElementById("storyForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
+
+          let mood = document.getElementById("mood").value;
+          let interest = document.getElementById("interests").value;
+
+          if (mood === "other") {
+            mood = document.getElementById("customMood").value;
+          }
+
+          if (interest === "other") {
+            interest = document.getElementById("customInterest").value;
+          }
+
+          let formData = {
+            age: document.getElementById("age").value,
+            gender: document.getElementById("gender").value,
+            mood: mood,
+            interests: interest,
+            story_length: document.getElementById("story_length").value,
+            time_of_day: document.getElementById("time_of_day").value,
+            additional: document.getElementById("additional").value,
+          };
+
+          let response = await fetch("/generate_story", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+          });
+
+          let result = await response.json();
+          document.getElementById("story").innerText = result.story;
+
+          document.getElementById("readEnglish").style.display = "inline-block";
+          document.getElementById("readHindi").style.display = "inline-block";
+          document.getElementById("readMarathi").style.display = "inline-block";
+
+          async function playAudio(button, language) {
+  const originalText = button.innerText; // Store original button text
+  button.innerText = "⏳ Traslating..."; // Show "Playing..." while processing
+  button.disabled = true; // Disable button to prevent multiple clicks
+
+  // Ensure the UI updates before fetching
+  await new Promise((resolve) => setTimeout(resolve, 100)); 
+
+  try {
+    let audioResponse = await fetch("/speak_story", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ story: document.getElementById("story").innerText, language: language }),
+    });
+
+    let audioBlob = await audioResponse.blob();
+    let audioUrl = URL.createObjectURL(audioBlob);
+    let audioPlayer = document.getElementById("audioPlayer");
+
+    audioPlayer.src = audioUrl;
+    audioPlayer.style.display = "block";
+
+    // Wait for audio to start playing
+    audioPlayer.onplay = () => {
+      button.innerText = originalText; // Reset button text
+      button.disabled = false; // Re-enable button
+    };
+
+    audioPlayer.play();
+  } catch (error) {
+    console.error("Error generating audio:", error);
+    button.innerText = originalText; // Reset button text in case of error
+    button.disabled = false;
+  }
+}
+
+// Assign event listeners
+document.getElementById("readEnglish").onclick = function () {
+  playAudio(this, "en");
+};
+document.getElementById("readHindi").onclick = function () {
+  playAudio(this, "hi");
+};
+document.getElementById("readMarathi").onclick = function () {
+  playAudio(this, "mr");
+};
+
+        });
+    </script>
+    <script>
+
+
+
+    </script>
+  </body>
+</html>
