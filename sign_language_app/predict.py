@@ -1,15 +1,7 @@
 import os
 import re
-<<<<<<< HEAD
-<<<<<<< HEAD
 import google.generativeai as genai  
 
-=======
-import google.generativeai as genai
->>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
-=======
-import google.generativeai as genai
->>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
 
 def remove_consecutive_duplicates(text):
     return re.sub(r'(.)\1+', r'\1', text)  # Replaces repeated characters with a single one
@@ -21,15 +13,7 @@ def predict_sentence(text):
         print("API key is missing.")
         return []
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     genai.configure(api_key=api_key)
-=======
-    client = genai.Client(api_key=api_key)
->>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
-=======
-    client = genai.Client(api_key=api_key)
->>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
 
     try:
         # Remove consecutive duplicate characters
@@ -57,12 +41,4 @@ def predict_sentence(text):
 
     except Exception as e:
         print(f"An error occurred: {e}")
-<<<<<<< HEAD
-<<<<<<< HEAD
         return 'na'
-=======
-        return 'na'
->>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
-=======
-        return 'na'
->>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf

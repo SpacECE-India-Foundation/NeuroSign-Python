@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 from flask import Flask, render_template, request, url_for, jsonify, send_file
 import os
 import cv2
@@ -140,37 +138,6 @@ recognizer = GestureRecognizer.create_from_options(options)
 
 
 
-=======
-=======
->>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
-from flask import render_template, request, jsonify, url_for
-import os
-import cv2
-import mediapipe as mp
-import base64
-import numpy as np
-import time
-from . import sign_language_bp
-
-ASL_PATH = "static/ASL"
-ISL_PATH = "static/ISL"
-DETECTED_TEXT = ''
-
-def get_sign_language_images(text, language):
-    folder_path = ASL_PATH if language == "ASL" else ISL_PATH
-    images = [url_for('static', filename=f"{language.upper()}/{letter}.jpg") 
-              if os.path.exists(os.path.join(folder_path, f"{letter}.jpg")) else url_for('static', filename="placeholder.jpg")
-              for letter in text.lower() if letter.isalpha() or letter.isdigit()]
-    return images
-
-mp_hands = mp.solutions.hands
-mp_drawing = mp.solutions.drawing_utils
-recognizer_detected = None
-
-<<<<<<< HEAD
->>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
-=======
->>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
 @sign_language_bp.route('/sign_language')
 def sign_language_home():
     return render_template('home.html')
@@ -193,8 +160,6 @@ def translate():
 
     return render_template('trans.html', images=None)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 lr=''
 count=0
 
@@ -203,27 +168,11 @@ count=0
 @sign_language_bp.route('/process_frame', methods=['GET','POST'])
 def process_frame():
     global DETECTED_TEXT,lr,count
-=======
-@sign_language_bp.route('/process_frame', methods=['GET','POST'])
-def process_frame():
-    global DETECTED_TEXT
->>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
-=======
-@sign_language_bp.route('/process_frame', methods=['GET','POST'])
-def process_frame():
-    global DETECTED_TEXT
->>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
     if request.method == 'GET':
         return render_template('index.html')
     global recognizer_detected
     frame_timestamp_ms = int(time.time() * 1000)
-<<<<<<< HEAD
-<<<<<<< HEAD
     print(frame_timestamp_ms)
-=======
->>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
-=======
->>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
 
     # Get the image data from the request
     data = request.json
@@ -247,8 +196,6 @@ def process_frame():
                 mp_drawing.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
 
     # Display recognized gesture on the frame
-<<<<<<< HEAD
-<<<<<<< HEAD
         #adding a bit of delay to ensure proper detection
     if recognizer_detected:
         if not lr:
@@ -263,14 +210,6 @@ def process_frame():
             cv2.putText(frame, recognizer_detected, (50, 70), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 0), 2, cv2.LINE_AA)
         else:
             cv2.putText(frame, recognizer_detected, (50, 70), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 0, 255), 2, cv2.LINE_AA)    
-=======
-    if recognizer_detected:
-        cv2.putText(frame, recognizer_detected, (50, 70), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 0), 2, cv2.LINE_AA)
->>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
-=======
-    if recognizer_detected:
-        cv2.putText(frame, recognizer_detected, (50, 70), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 0), 2, cv2.LINE_AA)
->>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
         DETECTED_TEXT=DETECTED_TEXT+recognizer_detected
 
     # Encode processed image for response
@@ -279,8 +218,6 @@ def process_frame():
     
     return jsonify(result=recognizer_detected, image='data:image/jpeg;base64,' + processed_image)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 #this routes resets the values to default
 @sign_language_bp.route('/reset', methods=['POST'])
 def reset():
@@ -387,22 +324,3 @@ def get_audio(filename):
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-=======
-=======
->>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
-@sign_language_bp.route('/predict', methods=['POST'])
-def P_text():
-    global DETECTED_TEXT
-    if len(DETECTED_TEXT) > 0:
-        temp = DETECTED_TEXT
-        DETECTED_TEXT=''
-        temp=predict_sentence(temp)
-        print(temp)
-        return jsonify(prediction=temp)
-    else:
-<<<<<<< HEAD
-        return jsonify(prediction="No gestures recognized")
->>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
-=======
-        return jsonify(prediction="No gestures recognized")
->>>>>>> 1038ca7102254afc462e6b46760820e902cbe2bf
